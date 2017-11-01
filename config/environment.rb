@@ -45,4 +45,10 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
 
-gmaps = GoogleMapsService::Client.new(key: 'AIzaSyBx6xIF2aD7o0aCgq2MkVA6xal6mjOxf7c')
+GoogleMapsService.configure do |config|
+  config.key = 'AIzaSyBx6xIF2aD7o0aCgq2MkVA6xal6mjOxf7c'
+  config.retry_timeout = 20
+  config.queries_per_second = 10
+end
+
+
