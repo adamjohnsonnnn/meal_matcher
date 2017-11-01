@@ -1,31 +1,19 @@
-<!--
-<form action="https://maps.googleapis.com/maps/api/distancematrix/json" method="GET" id="address-form">
-  <input type="hidden" name="units" value="imperial" >
-  <input type="text" name="origins" size="40" placeholder="origin">
-  <br />
-  <br />
-  <input type="text" name="destinations" size="40" placeholder="destination">
-  <br />
-  <br />
-  <input type="hidden" name="key" value="AIzaSyASNJo0xNT7i7xNePiH0qF95Wky6tTkNMk">
-  <input type="submit" value="submit" >
-</form>
-
-<div id="response-container" >
-
-</div>
- -->
-
 <form action="/matchings" method="POST" id="address-form">
-  <input type="text" name="matching[origin]" size="40" placeholder="origins">
+  <input type="text" name="matching[origin]" size="40" placeholder="origin">
   <br />
   <br />
-  <input type="text" name="matching[destination]" size="40" placeholder="destinations">
+  <input type="text" name="matching[destination]" size="40" placeholder="destination">
   <br />
   <br />
   <input type="submit" value="submit" >
 </form>
-
 <div id="response-container" >
-
+  <% if @matching %>
+    <% if @matching.matching_locations %>
+      <p>You have found a match!
+      <p>It will take <%= @matching.travel_time.to_i / 60 %> minutes to deliver.</p>
+    <% else %>
+      <p> You are not a match :( </p>
+    <% end %>
+  <% end %>
 </div>

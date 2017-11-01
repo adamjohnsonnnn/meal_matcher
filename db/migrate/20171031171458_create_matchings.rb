@@ -12,5 +12,6 @@ class CreateMatchings < ActiveRecord::Migration
 
       t.timestamps
     end
+
   end
 end
