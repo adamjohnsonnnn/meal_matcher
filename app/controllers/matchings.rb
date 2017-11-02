@@ -3,3 +3,8 @@ post '/matchings' do
   @matching.determine_match
   erb :'/matchings/new'
 end
+
+post '/matchings/index' do
+  @matchings = Matching.match_users
+  erb :'/matchings/new'
+end

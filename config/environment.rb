@@ -15,6 +15,8 @@ require 'pg'
 require 'active_record'
 require 'logger'
 require 'google_maps_service'
+require 'faker'
+require 'bcrypt'
 
 require 'sinatra'
 require "sinatra/reloader" if development?
@@ -46,7 +48,7 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 require APP_ROOT.join('config', 'database')
 
 GoogleMapsService.configure do |config|
-  config.key = 'AIzaSyBx6xIF2aD7o0aCgq2MkVA6xal6mjOxf7c'
+  config.key = 'AIzaSyC5xHz9FL64p6zHkgxS5sLj4ntv2jZUIQQ'
   config.retry_timeout = 20
   config.queries_per_second = 10
 end

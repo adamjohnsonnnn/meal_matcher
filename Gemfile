@@ -15,6 +15,8 @@ gem 'rake'
 gem 'rack', '1.5.2'
 gem 'shotgun'
 gem 'google_maps_service'
+gem 'bcrypt'
+gem 'faker'
 
 group :test do
   gem 'shoulda-matchers'

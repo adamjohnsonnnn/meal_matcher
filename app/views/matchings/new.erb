@@ -7,13 +7,41 @@
   <br />
   <input type="submit" value="submit" >
 </form>
+
 <div id="response-container" >
   <% if @matching %>
+
     <% if @matching.matching_locations %>
-      <p>You have found a match!
+      <p>You have found a match!</p>
       <p>It will take <%= @matching.travel_time.to_i / 60 %> minutes to deliver.</p>
     <% else %>
       <p> You are not a match :( </p>
     <% end %>
+
   <% end %>
 </div>
+
+<br />
+<br />
+<h3>Show all user matches</h3>
+
+<form action="/matchings/index" method="POST" id="matchings-button">
+  <input type="submit" value="show all" >
+</form>
+  <br />
+  <br />
+<div id="response-container" >
+  <% if @matchings %>
+    <p><b>Total matches - <%= @matchings.count %></b></p>
+    <% @matchings.each do |matching| %>
+      <p>Matching:</p>
+      <p>Meal maker: <%= matching.meal_maker.first_name %> <%= matching.meal_maker.last_name %> - (<%= matching.origin %>) </p>
+      <p>Meal recipient: <%= matching.meal_recipient.first_name %> <%= matching.meal_recipient.last_name %> - (<%= matching.destination %>) </p>
+      <p>It will take <%= matching.travel_time.to_i / 60 %> minutes to deliver.</p>
+      <br />
+      <br />
+    <% end %>
+
+  <% end %>
+</div>
+

@@ -1,6 +1,8 @@
 class Matching < ActiveRecord::Base
 
   validates :origin, :destination, presence: true
+  belongs_to :meal_maker, class_name: "User"
+  belongs_to :meal_recipient, class_name: "User"
 
 
 def self.create_matching(params)
@@ -23,6 +25,29 @@ def self.create_matching(params)
 
   return @matching
 
+end
+
+def self.match_users
+  @users = User.all.to_a
+  matching_users = []
+
+  @users.each do |user|
+    abridged_users = @users - [user]
+
+    abridged_users.each do |matched_user|
+      @matching = Matching.create_matching(origin: user.home_address, destination: matched_user.home_address)
+      @matching.meal_maker = user
+      @matching.meal_recipient = matched_user
+      @matching.determine_match
+
+      if @matching.matching_locations == true
+        matching_users << @matching
+      end
+
+    end
+
+  end
+  matching_users
 end
 
 def determine_match

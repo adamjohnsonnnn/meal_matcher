@@ -2,8 +2,8 @@ class CreateMatchings < ActiveRecord::Migration
   def change
 
     create_table :matchings do |t|
-      t.integer :meal_maker
-      t.integer :meal_recipient
+      t.integer :meal_maker_id
+      t.integer :meal_recipient_id
       t.string :origin
       t.string :destination
       t.string :distance
